@@ -3,7 +3,7 @@
     <!-- 9293668-->
 <html>
 	<head>
-		<title>Lista</title>
+		<title>EveryList</title>
 		<script src="https://unpkg.com/vue"></script>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
@@ -12,25 +12,25 @@
 		<div id="app" class="container">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item active mt-2" aria-current="page"> Lista de Tarefas</li>
+					<li class="breadcrumb-item active mt-2" aria-current="page">PLACEHOLDER</li>
 				</ol>
 			</nav>
 			<div class="row">
 				<div class="input-group mb-3">
-					<input v-model="message" v-on:keyup.enter="adicionaItem()" type="text" class="form-control" placeholder="tarefa 1: limpar a casa dos cachorros" aria-label="Recipient's username" aria-describedby="button-addon2">
+					<input v-model="message" v-on:keyup.enter="addItem()" type="text" class="form-control" placeholder="Type your item here!" aria-label="Recipient's username" aria-describedby="button-addon2">
 					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="adicionaItem()">Button</button>
+						<button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="addItem()">Add</button>
 					</div>
 				</div>
 			</div>
 			<ul class="list-group">
-				<li v-for="item in lista" class="list-group-item mt-2">
+				<li v-for="item in list" class="list-group-item mt-2">
 					<div class="row">
 						<div class="col-10">
 							{{item}}
 						</div>
 						<div class="col-2">
-							<button type="button" class="btn btn-outline-danger btn-sm" v-on:click="apaga(item)">Apagar</button>
+							<button type="button" class="btn btn-outline-danger btn-sm" v-on:click="erase(item)">Delete</button>
 						</div>
 					</div>
 				</li>
