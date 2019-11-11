@@ -87,7 +87,7 @@ a, a:hover, a:focus {
 .carousel-caption {
   z-index: 1; /* Since positioning the image, we need to help out the caption */
   top: 10%;
-  opacity: 70%;
+  opacity: 80%;
 }
 
 /* Declare heights because of positioning of img element */
