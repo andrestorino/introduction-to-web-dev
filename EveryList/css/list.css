@@ -58,13 +58,25 @@ a, a:hover, a:focus {
 	margin-left: auto;
 	margin-right: auto;
 	background: #7386D5;
-    font-size: 6em;
+    font-size: 100px;
 	border-radius: 50%;
     display: block;
 }
 
 #sidebar ul li .btn:hover {
     color: #fff;
+}
+
+#add-button {
+	position: absolute;
+	bottom: 0;
+	right: 50px;
+}
+
+#erase-button {
+	position: absolute;
+	bottom: 0;
+	left: 50px;
 }
 
 /* CUSTOMIZE THE CAROUSEL
