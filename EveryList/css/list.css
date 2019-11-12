@@ -56,7 +56,7 @@
 }
 /* CUSTOMIZE THE CAROUSEL */
 /* Carousel base class */
- .carousel {
+ #myCarousel {
      height: 200px;
      margin: auto;
      margin-bottom: 20px;
@@ -73,9 +73,9 @@
      opacity: 0.8;
 }
 /* Declare heights because of positioning of img element */
- .carousel-item {
+ #myCarousel > .carousel-inner > .carousel-item {
      height: 200px;
-     background-color: #2e2e2e;
+     background-color: inherit;
 }
  .carousel-inner > .carousel-item > img {
      position: absolute;

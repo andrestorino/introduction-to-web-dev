@@ -18,3 +18,15 @@ var app = new Vue({
 		}
 	}
 });
+
+$(document).ready(function(){
+  // Enable Carousel Controls
+  $(".left").click(function(){
+    $("#myCarousel").carousel("prev");
+	$("#listCarousel").carousel("prev");
+  });
+  $(".right").click(function(){
+    $("#myCarousel").carousel("next");
+	$("#listCarousel").carousel("next");
+  });
+});
