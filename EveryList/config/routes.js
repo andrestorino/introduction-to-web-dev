@@ -20,6 +20,11 @@ module.exports.routes = {
   ***************************************************************************/
 
 	'/': { view: 'pages/homepage' },
+	'post /createList' : 'List.createList',
+	'post /deleteList' : 'List.deleteList',
+	'post /editList'   : 'List.editList',
+	'post /createItem' : 'Item.createItem',
+	'post /deleteItem' : 'Item.deleteItem'
 
 
   /***************************************************************************

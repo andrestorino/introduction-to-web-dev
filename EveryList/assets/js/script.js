@@ -20,15 +20,23 @@ var listBody = Vue.extend({
 			  '</li>' +
 			  '</ul>',
 	methods:{
-		addItem: function(message){
+		addItem: function(message, id){
 			if (message != "") {
+				var response = axios
+					.post('/createItem', {data: message, owner: id});
 				this.list.push(message);
 			}
 		},
 		erase: function(a){
+			var activeComponent = document.querySelector('#listCarousel .carousel-inner .carousel-item.active');
+			for(var i = 0; i < this.$parent.$children.length && this.$parent.$children[i].$el != activeComponent; i++);
+			var response = axios
+				.post('/deleteItem', {data: a.$el, owner: i});
 			this.list.splice(this.list.indexOf(a), 1);
 		},
-		remove: function() {
+		remove: function(id) {
+			var response = axios
+				.post('/deleteList', {owner: id});
             this.$destroy();
 			this.$el.parentNode.removeChild(this.$el);
         },
@@ -53,7 +61,12 @@ var listHead = Vue.extend({
 			  '</div>' +
 			  '</div>',
 	methods: {
-		changeTitleAndImage: function(name, URL) {
+		changeTitleAndImage: function(name, URL, id) {
+			alert(name)
+			alert(URL)
+			alert(id)
+			var response = axios
+				.post('/editList', {title: name, URL: URL, id: id});
 			this.title = name;
 			this.imageURL = URL;
 		},
@@ -61,7 +74,6 @@ var listHead = Vue.extend({
             this.$destroy();
 			this.$el.parentNode.removeChild(this.$el);
         },
-
 	}
 });
 Vue.component('list-head', listHead);
@@ -75,7 +87,7 @@ var app = new Vue({
 		addItem: function(){
 			var activeComponent = document.querySelector('#listCarousel .carousel-inner .carousel-item.active');
 			for(var i = 0; i < this.$children.length && this.$children[i].$el != activeComponent; i++);
-			this.$children[i].addItem(this.message);
+			this.$children[i].addItem(this.message, i);
 			this.message = '';
 		},
 		changeTitleAndImage: function() {
@@ -83,7 +95,7 @@ var app = new Vue({
 			var url = document.querySelector('#list-image-url').value;
 			var activeComponent = document.querySelector('#myCarousel .carousel-inner .carousel-item.active');
 			for(var i = 0; i < this.$children.length && this.$children[i].$el != activeComponent; i++);
-			this.$children[i].changeTitleAndImage(title, url);
+			this.$children[i].changeTitleAndImage(title, url, i);
 		},
 		removeInstance: function() {
 			var activeComponent = document.querySelector('#myCarousel .carousel-inner .carousel-item.active');
@@ -102,11 +114,13 @@ var app = new Vue({
 				this.$children.splice(i, 1);
 			len = this.$children.length
 			for(var i = 0; i < len && this.$children[i].$el != activeComponentBody; i++);
-			this.$children[i].remove();
+			this.$children[i].remove(i);
 			if (this.$children.length == len)
 				this.$children.splice(i, 1);
 		},
 		addInstance: function() {
+			var response = axios
+				.post('/createList', {title: '', URL: '', id: this.$children.length});
 			bodyInstance = new listBody();
 			headInstance = new listHead();
 			bodyInstance.$mount();
